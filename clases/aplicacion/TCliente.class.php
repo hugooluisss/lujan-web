@@ -90,110 +90,81 @@ class TCliente{
 	}
 	
 	/**
-	* Retorna el tipo
+	* Establece el contacto
 	*
 	* @autor Hugo
 	* @access public
-	* @return string Texto
-	*/
-	
-	public function getTipo(){
-		if ($this->getIdTipo() == '') return false;
-		
-		$db = TBase::conectaDB();
-		$rs = $db->query("select nombre from tipoUsuario where idTipoUsuario = ".$this->getIdTipo());
-		$row = $rs->fetch_assoc();
-		return $row['nombre'];
-	}
-	
-	/**
-	* Retorna el tipo como si fuera un perfil
-	*
-	* @autor Hugo
-	* @access public
-	* @return string Texto
-	*/
-	
-	public function getPerfil(){
-		return $this->getIdTipo();
-	}
-		
-	/**
-	* Establece el nombre
-	*
-	* @autor Hugo
-	* @access public
-	* @param string $val Valor a asignar
+	* @param string $val Valor a asignar por default es 2 que hace referencia a doctor
 	* @return boolean True si se realizó sin problemas
 	*/
 	
-	public function setNombre($val = ''){
-		$this->nombre = $val;
+	public function setContacto($val = ''){
+		$this->contacto = $val;
 		return true;
 	}
 	
 	/**
-	* Retorna el nombre
+	* Retorna el contacto
 	*
 	* @autor Hugo
 	* @access public
 	* @return string Texto
 	*/
 	
-	public function getNombre(){
-		return $this->nombre;
+	public function getContacto(){
+		return $this->contacto;
 	}
 	
 	/**
-	* Establece el email
+	* Establece el teléfono
 	*
 	* @autor Hugo
 	* @access public
-	* @param string $val Valor a asignar
+	* @param string $val Valor a asignar por default es 2 que hace referencia a doctor
 	* @return boolean True si se realizó sin problemas
 	*/
 	
-	public function setEmail($val = ''){
-		$this->email = $val;
+	public function setTelefono($val = ''){
+		$this->telefono = $val;
 		return true;
 	}
 	
 	/**
-	* Retorna el email
+	* Retorna el telefono
 	*
 	* @autor Hugo
 	* @access public
 	* @return string Texto
 	*/
 	
-	public function getEmail(){
-		return $this->email;
+	public function getTelefono(){
+		return $this->telefono;
 	}
 	
 	/**
-	* Establece el valor del password
+	* Establece el correo
 	*
 	* @autor Hugo
 	* @access public
-	* @param string $val Valor a asignar
+	* @param string $val Valor a asignar por default es 2 que hace referencia a doctor
 	* @return boolean True si se realizó sin problemas
 	*/
 	
-	public function setPass($val = ''){
-		$this->pass = $val;
+	public function setCorreo($val = ''){
+		$this->correo = $val;
 		return true;
 	}
 	
 	/**
-	* Retorna el password
+	* Retorna el correo
 	*
 	* @autor Hugo
 	* @access public
 	* @return string Texto
 	*/
 	
-	public function getPass(){
-		return $this->pass;
+	public function getCorreo(){
+		return $this->correo;
 	}
 	
 	/**
@@ -205,27 +176,25 @@ class TCliente{
 	*/
 	
 	public function guardar(){
-		if ($this->getIdTipo() == '') return false;
-		
 		$db = TBase::conectaDB();
 		
 		if ($this->getId() == ''){
-			$rs = $db->query("INSERT INTO usuario(idTipo, visible) VALUES(".$this->getIdTipo().", true);");
+			$rs = $db->query("INSERT INTO cliente(razonsocial) VALUES('".$this->getRazonSocial()."');");
 			if (!$rs) return false;
 				
-			$this->idUsuario = $db->insert_id;
+			$this->idCliente = $db->insert_id;
 		}		
 		
 		if ($this->getId() == '')
 			return false;
 		
-		$sql = "UPDATE usuario
+		$sql = "UPDATE cliente
 			SET
-				idTipo = ".$this->getIdTipo().",
-				nombre = '".$this->getNombre()."',
-				email = '".$this->getEmail()."',
-				pass = '".$this->getPass()."'
-			WHERE idUsuario = ".$this->getId();
+				razonsocial = '".$this->getRazonSocial()."',
+				contacto = '".$this->getContacto()."',
+				telefono = '".$this->getTelefono()."',
+				correo = '".$this->getCorreo()."'
+			WHERE idCliente = ".$this->getId();
 		$rs = $db->query($sql) or errorMySQL($db, $sql);
 			
 		return $rs?true:false;
@@ -243,7 +212,7 @@ class TCliente{
 		if ($this->getId() == '') return false;
 		
 		$db = TBase::conectaDB();
-		$sql = "update usuario set visible = false where idUsuario = ".$this->getId();
+		$sql = "update cliente set visible = false where idCliente = ".$this->getId();
 		$rs = $db->query($sql) or errorMySQL($db, $sql);
 		
 		return $rs?true:false;

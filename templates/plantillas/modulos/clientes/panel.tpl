@@ -1,25 +1,4 @@
-<?php /* Smarty version Smarty-3.1.11, created on 2017-08-24 09:37:18
-         compiled from "templates/plantillas/modulos/clientes/panel.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:1639386033599ee3b260ba38-88778525%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
-$_valid = $_smarty_tpl->decodeProperties(array (
-  'file_dependency' => 
-  array (
-    '2b0420e588c8f140981aaefc6982f8fda3e4f189' => 
-    array (
-      0 => 'templates/plantillas/modulos/clientes/panel.tpl',
-      1 => 1503585436,
-      2 => 'file',
-    ),
-  ),
-  'nocache_hash' => '1639386033599ee3b260ba38-88778525',
-  'function' => 
-  array (
-  ),
-  'version' => 'Smarty-3.1.11',
-  'unifunc' => 'content_599ee3b262cdc1_60891860',
-  'has_nocache_code' => false,
-),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_599ee3b262cdc1_60891860')) {function content_599ee3b262cdc1_60891860($_smarty_tpl) {?><div class="row">
+<div class="row">
 	<div class="col-sm-12">
 		<h1 class="page-header">Clientes</h1>
 	</div>
@@ -74,4 +53,4 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			</div>
 		</form>
 	</div>
-</div><?php }} ?>
+</div>
