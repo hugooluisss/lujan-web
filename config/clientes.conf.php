@@ -16,6 +16,13 @@ $conf['listaClientes'] = array(
 	'seguridad' => true,
 	'capa' => LAYOUT_AJAX);
 	
+$conf['listaClientesAutocomplete'] = array(
+	'controlador' => 'clientes.php',
+	'vista' => 'clientes/lista.tpl',
+	'descripcion' => 'Lista de clientes',
+	'seguridad' => true,
+	'capa' => LAYOUT_JSON);
+	
 $conf['cclientes'] = array(
 	'controlador' => 'clientes.php',
 	'descripcion' => 'Controlador de clientes',

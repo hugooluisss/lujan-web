@@ -16,6 +16,22 @@ switch($objModulo->getId()){
 		
 		$smarty->assign("lista", $datos);
 	break;
+	case 'listaClientesAutocomplete':
+		$db = TBase::conectaDB();
+		global $userSesion;
+		
+		$rs = $db->query("select * from cliente a where a.visible = true and (contacto like '%".$_GET['term']."%' or razonsocial like '%".$_GET['term']."%')");
+		$datos = array();
+		while($row = $rs->fetch_assoc()){
+			$aux = array();
+			
+			$aux["label"] = $row['razonsocial'];
+			$aux['identificador'] = $row['idCliente'];
+			
+			array_push($datos, $aux);
+		}
+		$smarty->assign("json", $datos);
+	break;
 	case 'cclientes':
 		switch($objModulo->getAction()){
 			case 'add':
