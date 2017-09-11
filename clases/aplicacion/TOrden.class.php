@@ -63,10 +63,10 @@ class TOrden{
 				case 'idEstado':
 					$this->estado = new TEstado($val);
 				break;
-				case 'cliente':
+				case 'idCliente':
 					$this->cliente = new TCliente($val);
 				break;
-				case "usuario":
+				case "idUsuario":
 					$this->usuario = new TUsuario($val);
 				break;
 				default:

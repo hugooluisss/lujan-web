@@ -17,6 +17,12 @@ $conf['listaOrdenes'] = array(
 	'seguridad' => true,
 	'capa' => LAYOUT_AJAX);
 	
+$conf['listaOrdenesAgente'] = array(
+	'controlador' => 'ordenes.php',
+	'descripcion' => 'Lista de ordenes',
+	'seguridad' => true,
+	'capa' => LAYOUT_JSON);
+	
 $conf['cordenes'] = array(
 	'controlador' => 'ordenes.php',
 	'descripcion' => 'Controlador de ordenes',

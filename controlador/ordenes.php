@@ -54,19 +54,46 @@ switch($objModulo->getId()){
 		
 		$smarty->assign("lista", $datos);
 	break;
+	case 'listaOrdenesAgente':
+		$db = TBase::conectaDB();
+		global $sesion;
+		$sql = "select a.*, b.nombre as estado, b.color, c.razonsocial as cliente, d.nombre as usuario, e.nombre as tipo from orden a join estado b using(idEstado) join cliente c using(idCliente) left join usuario d using(idUsuario) join tipoorden e on a.idTipo = e.idTipo where not a.idEstado = 5 and a.idUsuario = ".$_POST['usuario'];
+			
+		$rs = $db->query($sql) or errorMySQL($db, $sql);
+		$datos = array();
+		while($row = $rs->fetch_assoc()){
+			$row['json'] = json_encode($row);
+			
+			array_push($datos, $row);
+		}
+		
+		$smarty->assign("json", $datos);
+	break;
 	case 'cordenes':
 		switch($objModulo->getAction()){
 			case 'add':
 				$obj = new TOrden();
 				
 				$obj->setId($_POST['id']);
-				$obj->estado->setId($_POST['estado']);
-				$obj->cliente->setId($_POST['cliente']);
-				$obj->usuario->setId($_POST['usuario']);
-				$obj->setTipo($_POST['tipo']);
 				
-				$obj->setFecha($_POST['fecha']);
-				$obj->setFactura($_POST['factura']);
+				if ($_POST['estado'] <> '')
+					$obj->estado->setId($_POST['estado']);
+				
+				if ($_POST['cliente'] <> '')
+					$obj->cliente->setId($_POST['cliente']);
+					
+				if ($_POST['usuario'] <> '')
+					$obj->usuario->setId($_POST['usuario']);
+					
+				if ($_POST['tipo'] <> '')
+					$obj->setTipo($_POST['tipo']);
+				
+				if ($_POST['fecha'] <> '')
+					$obj->setFecha($_POST['fecha']);
+					
+				if ($_POST['factura'] <> '')
+					$obj->setFactura($_POST['factura']);
+					
 				$obj->setLugar($_POST['lugar']);
 				$obj->setTransportista($_POST['transportista']);
 				$obj->setChofer($_POST['chofer']);
@@ -81,6 +108,11 @@ switch($objModulo->getId()){
 				$band = $obj->guardar();
 				
 				$smarty->assign("json", array("band" => $band));
+			break;
+			case 'addMercancia':
+				$objOrden = new TOrden($_POST['orden']);
+				
+				
 			break;
 		}
 	break;

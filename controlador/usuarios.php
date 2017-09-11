@@ -72,23 +72,32 @@ switch($objModulo->getId()){
 				$obj = new TUsuario($_POST['usuario']);
 				$smarty->assign("json", array("band" => $obj->eliminar()));
 			break;
-			case 'saveDatosPersonales':
-				global $sesion;
+			case 'recuperarPass':
+				$db = TBase::conectaDB();
+				global $ini;
+				$sql = "select idUsuario from usuario where email = upper('".$_POST['correo']."') and visible = true";
+				$rs = $db->query($sql) or errorMySQL($db, $sql);
 				
-				$obj = new TUsuario();
-				$obj->setId($sesion['usuario']);
-				$obj->setNombre($_POST['nombre']);
-				
-				$smarty->assign("json", array("band" => $obj->guardar()));
-			break;
-			case 'savePassword':
-				global $sesion;
-				
-				$obj = new TUsuario();
-				$obj->setId($sesion['usuario']);
-				$obj->setPass($_POST['pass']);
-				
-				$smarty->assign("json", array("band" => $obj->guardar()));
+				if ($rs->num_rows >= 1){
+					$row = $rs->fetch_assoc();
+					$usuario = new TUsuario($row['idUsuario']);
+					
+					$datos = array();
+					$datos['transportista.nombre'] = $usuario->getNombre();
+					$datos['transportista.pass'] = $usuario->getPass();
+					$datos['transportista.email'] = $usuario->getEmail();
+					$datos['sitio.url'] = $ini["sistema"]["url"];
+					
+					$email = new TMail();
+					$email->setTema("Recuperación de contraseña");
+					#$email->setOrigen("Grupo Domi", $ini['mail']['user']);
+					$email->addDestino($usuario->getEmail(), utf8_decode($usuario->getNombre()));
+					
+					$email->setBodyHTML(utf8_decode($email->construyeMail(file_get_contents("repositorio/mail/recuperarPass.html"), $datos)));
+					
+					echo json_encode(array("band" => $email->send(), "mensaje" => "Se trató de enviar"));
+				}else
+					echo json_encode(array("band" => false));
 			break;
 		}
 	break;

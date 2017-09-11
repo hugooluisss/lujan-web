@@ -130,7 +130,7 @@ class TMercancia{
 	*/
 	
 	public function setMarca($val = ''){
-		$this->fraccion = $val;
+		$this->marca = $val;
 		return true;
 	}
 	
@@ -397,7 +397,7 @@ class TMercancia{
 			$rs = $db->query($sql) or errorMySQL($db, $sql);;
 			if (!$rs) return false;
 			
-			$this->idEstado = $db->insert_id;
+			$this->idMercancia = $db->insert_id;
 		}
 		
 		if ($this->getId() == '')
@@ -417,8 +417,8 @@ class TMercancia{
 				fraccion = '".$this->getFraccion()."',
 				mctm = '".$this->getMCTM()."',
 				ec = '".$this->getEC()."',
-				observaciones = '".$this->getObservaciones()."',
-			WHERE idEstado = ".$this->getId();
+				observaciones = '".$this->getObservaciones()."'
+			WHERE idMercancia = ".$this->getId();
 			
 		$rs = $db->query($sql) or errorMySQL($db, $sql);
 			
