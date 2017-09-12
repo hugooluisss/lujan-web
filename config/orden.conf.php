@@ -7,7 +7,7 @@ $conf['ordenes'] = array(
 	'descripcion' => 'Administración de ordenes',
 	'seguridad' => true,
 	'js' => array('orden.class.js'),
-	'jsTemplate' => array('ordenes.js'),
+	'jsTemplate' => array('ordenes.js', 'mercancias.js'),
 	'capa' => LAYOUT_DEFECTO);
 
 $conf['listaOrdenes'] = array(

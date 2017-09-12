@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.11, created on 2017-08-29 22:28:30
+<?php /* Smarty version Smarty-3.1.11, created on 2017-09-11 22:25:29
          compiled from "templates/plantillas/modulos/ordenes/panel.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:77778909459a602d1a63231-01434469%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '0b41b2cd4b65a3beb86339193dded29b382ba17c' => 
     array (
       0 => 'templates/plantillas/modulos/ordenes/panel.tpl',
-      1 => 1504063652,
+      1 => 1505186727,
       2 => 'file',
     ),
   ),
@@ -24,6 +24,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'tipos' => 0,
     'item' => 0,
     'usuarios' => 0,
+    'PAGE' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -180,4 +181,9 @@ $_smarty_tpl->tpl_vars['row']->_loop = true;
 			</div>
 		</form>
 	</div>
-</div><?php }} ?>
+</div>
+
+<?php echo $_smarty_tpl->getSubTemplate (($_smarty_tpl->tpl_vars['PAGE']->value['rutaModulos']).("modulos/ordenes/winListaMercancias.tpl"), $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+
+<?php echo $_smarty_tpl->getSubTemplate (($_smarty_tpl->tpl_vars['PAGE']->value['rutaModulos']).("modulos/ordenes/winMercancia.tpl"), $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+<?php }} ?>

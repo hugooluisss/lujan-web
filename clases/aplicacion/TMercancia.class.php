@@ -20,6 +20,8 @@ class TMercancia{
 	private $mctm;
 	private $ec;
 	private $observaciones;
+	private $idOrigen;
+	private $idDestino;
 	
 	/**
 	* Constructor de la clase
@@ -381,6 +383,58 @@ class TMercancia{
 	}
 	
 	/**
+	* Establece el Origen
+	*
+	* @autor Hugo
+	* @access public
+	* @param string $val Valor a asignar, por default es MX
+	* @return boolean True si se realizó sin problemas
+	*/
+	
+	public function setOrigen($val = 146){
+		$this->idOrigen = $val;
+		return true;
+	}
+	
+	/**
+	* Retorna el origen
+	*
+	* @autor Hugo
+	* @access public
+	* @return string Texto
+	*/
+	
+	public function getOrigen(){
+		return $this->idOrigen;
+	}
+	
+	/**
+	* Establece el destino
+	*
+	* @autor Hugo
+	* @access public
+	* @param string $val Valor a asignar, por default es MX
+	* @return boolean True si se realizó sin problemas
+	*/
+	
+	public function setDestino($val = 146){
+		$this->idDestino = $val;
+		return true;
+	}
+	
+	/**
+	* Retorna el destino
+	*
+	* @autor Hugo
+	* @access public
+	* @return string Texto
+	*/
+	
+	public function getDestino(){
+		return $this->idDestino;
+	}
+	
+	/**
 	* Guarda los datos en la base de datos, si no existe un identificador entonces crea el objeto
 	*
 	* @autor Hugo
@@ -390,10 +444,12 @@ class TMercancia{
 	
 	public function guardar($orden = ''){
 		if ($orden == '') return false;
+		if ($this->getOrigen() == '') return false;
+		if ($this->getDestino() == '') return false;
 		$db = TBase::conectaDB();
 		
 		if ($this->getId() == ''){
-			$sql = "INSERT INTO mercancia(idOrden) VALUES(".$orden.");";
+			$sql = "INSERT INTO mercancia(idOrden, idOrigen, idDestino) VALUES(".$orden.", ".$this->getOrigen().", ".$this->getDestino().");";
 			$rs = $db->query($sql) or errorMySQL($db, $sql);;
 			if (!$rs) return false;
 			
@@ -417,7 +473,9 @@ class TMercancia{
 				fraccion = '".$this->getFraccion()."',
 				mctm = '".$this->getMCTM()."',
 				ec = '".$this->getEC()."',
-				observaciones = '".$this->getObservaciones()."'
+				observaciones = '".$this->getObservaciones()."',
+				idOrigen = ".$this->getOrigen().",
+				idDestino = ".$this->getDestino()."
 			WHERE idMercancia = ".$this->getId();
 			
 		$rs = $db->query($sql) or errorMySQL($db, $sql);

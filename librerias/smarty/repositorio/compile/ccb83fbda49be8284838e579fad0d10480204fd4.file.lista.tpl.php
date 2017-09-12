@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.11, created on 2017-08-29 22:38:57
+<?php /* Smarty version Smarty-3.1.11, created on 2017-09-11 22:24:19
          compiled from "templates/plantillas/modulos/ordenes/lista.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:85214592059a602f5e2c5f6-78988998%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ccb83fbda49be8284838e579fad0d10480204fd4' => 
     array (
       0 => 'templates/plantillas/modulos/ordenes/lista.tpl',
-      1 => 1504064335,
+      1 => 1505186597,
       2 => 'file',
     ),
   ),
@@ -59,6 +59,8 @@ $_smarty_tpl->tpl_vars["row"]->_loop = true;
 						<td style="text-align: right">
 							<button type="button" class="btn btn-primary btn-xs" action="modificar" title="Modificar" datos='<?php echo $_smarty_tpl->tpl_vars['row']->value['json'];?>
 '><i class="fa fa-edit"></i></button>
+							<button type="button" class="btn btn-primary btn-xs" action="getMercancias" title="Ver mercancías registradas" datos='<?php echo $_smarty_tpl->tpl_vars['row']->value['json'];?>
+' data-toggle="modal" data-target="#winListaMercancias"><i class="fa fa-archive"></i></button>
 						</td>
 					</tr>
 				<?php } ?>

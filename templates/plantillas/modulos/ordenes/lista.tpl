@@ -21,6 +21,7 @@
 						<td>{$row.usuario}</td>
 						<td style="text-align: right">
 							<button type="button" class="btn btn-primary btn-xs" action="modificar" title="Modificar" datos='{$row.json}'><i class="fa fa-edit"></i></button>
+							<button type="button" class="btn btn-primary btn-xs" action="getMercancias" title="Ver mercancías registradas" datos='{$row.json}' data-toggle="modal" data-target="#winListaMercancias"><i class="fa fa-archive"></i></button>
 						</td>
 					</tr>
 				{/foreach}

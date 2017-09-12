@@ -109,10 +109,17 @@ switch($objModulo->getId()){
 				
 				$smarty->assign("json", array("band" => $band));
 			break;
-			case 'addMercancia':
-				$objOrden = new TOrden($_POST['orden']);
+			case 'getPaises':
+				$db = TBase::conectaDB();
+				$sql = "select * from pais";
+					
+				$rs = $db->query($sql) or errorMySQL($db, $sql);
+				$datos = array();
+				while($row = $rs->fetch_assoc()){
+					array_push($datos, $row);
+				}
 				
-				
+				$smarty->assign("json", $datos);
 			break;
 		}
 	break;

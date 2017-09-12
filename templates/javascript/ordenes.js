@@ -109,6 +109,10 @@ $(document).ready(function(){
 				$('#panelTabs a[href="#add"]').tab('show');
 			});
 			
+			$("[action=getMercancias]").click(function(){
+				$("#winListaMercancias").attr("datos", $(this).attr("datos"));
+			});
+			
 			$("#tblDatos").DataTable({
 				"responsive": true,
 				"language": espaniol,

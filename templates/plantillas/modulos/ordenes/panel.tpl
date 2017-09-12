@@ -132,3 +132,6 @@
 		</form>
 	</div>
 </div>
+
+{include file=$PAGE.rutaModulos|cat:"modulos/ordenes/winListaMercancias.tpl"}
+{include file=$PAGE.rutaModulos|cat:"modulos/ordenes/winMercancia.tpl"}

@@ -6,11 +6,19 @@ switch($objModulo->getId()){
 	case 'listaMercancia':
 		$db = TBase::conectaDB();
 		global $sesion;
-		$sql = "select * from mercancia where idOrden = ".$_POST['orden'];
+		$sql = "select a.*, b.nombre as origen, c.nombre as destino from mercancia a join pais b on a.idOrigen = b.idPais join pais c on a.idDestino = c.idPais where idOrden = ".$_POST['orden'];
 			
 		$rs = $db->query($sql) or errorMySQL($db, $sql);
 		$datos = array();
+		
 		while($row = $rs->fetch_assoc()){
+			$repositorio = "repositorio/mercancia/".$row['idMercancia']."/";
+			$archivos = scandir($repositorio, 1);
+			$row['imagenes'] = array();
+			foreach($archivos as $file){
+				if (!in_array($file, array(".", "..", ".DS_Store")))
+					array_push($row['imagenes'], array("src" => $repositorio.$file, "nombre" => $file));
+			}
 			$row['json'] = json_encode($row);
 			
 			array_push($datos, $row);
@@ -39,6 +47,8 @@ switch($objModulo->getId()){
 				$obj->setMCTM($_POST['mctm']);
 				$obj->setEC($_POST['ec']);
 				$obj->setObservaciones($_POST['observaciones']);
+				$obj->setOrigen($_POST['origen']);
+				$obj->setDestino($_POST['destino']);
 					
 				$band = $obj->guardar($_POST['orden']);
 				
@@ -47,6 +57,32 @@ switch($objModulo->getId()){
 			case 'del':
 				$obj = new TMercancia($_POST['id']);
 				$smarty->assign("json", array("band" => $obj->eliminar()));
+			break;
+			case 'uploadImagen':
+				$mercancia = new TMercancia($_POST['identificador']);
+				if ($mercancia->getId() == '')
+					$smarty->assign("json", array("band" => false));
+				else{
+					mkdir("repositorio/mercancia/".$mercancia->getId()."/", 0777, true);
+					
+					saveImage($_POST['imagen'], "repositorio/mercancia/".$mercancia->getId()."/".date("YmdHis").".jpg");
+					$smarty->assign("json", array("band" => true));
+				}
+			break;
+			case 'eliminarFoto':
+				unlink($_POST['archivo']);
+				$smarty->assign("json", array("band" => true));
+			break;
+			case 'getFotografias':
+				$repositorio = "repositorio/mercancia/".$_POST['identificador']."/";
+				$archivos = scandir($repositorio, 1);
+				$imagenes = array();
+				foreach($archivos as $file){
+					if (!in_array($file, array(".", "..", ".DS_Store")))
+						array_push($imagenes, array("src" => $repositorio.$file, "nombre" => $file));
+				}
+				
+				$smarty->assign("json", $imagenes);
 			break;
 		}
 	break;
