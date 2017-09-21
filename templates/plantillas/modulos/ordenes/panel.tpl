@@ -57,16 +57,26 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="selUsuario" class="col-md-2">Usuario encargado</label>
+						<label for="selPrevio" class="col-md-2">Usuario previo (revisor)</label>
 						<div class="col-md-4">
-							<select class="form-control" id="selUsuario" name="selUsuario">
-								{foreach item=row from=$usuarios}
-									<option value="">Sin asignar</option>
+							<select class="form-control" id="selPrevio" name="selPrevio">
+								<option value="">Sin asignar</option>
+								{foreach item=row from=$previos}
+									<option value="{$row.idUsuario}">{$row.nombre}</option>
+								{/foreach}
+							</select>
+						</div>
+						<label for="selCapturista" class="col-md-2">Usuario capturista</label>
+						<div class="col-md-4">
+							<select class="form-control" id="selCapturista" name="selCapturista">
+								<option value="">Sin asignar</option>
+								{foreach item=row from=$capturistas}
 									<option value="{$row.idUsuario}">{$row.nombre}</option>
 								{/foreach}
 							</select>
 						</div>
 					</div>
+					{if in_array($PAGE.usuario->getIdTipo(), array(4, 1))}
 					<br />
 					<div class="form-group">
 						<label for="txtLugar" class="col-md-2">Lugar</label>
@@ -121,13 +131,17 @@
 							<input class="form-control" id="txtNumeroCandado" name="txtNumeroCandado">
 						</div>
 					</div>
+					{/if}
 				</div>
 				<div class="box-footer">
 					<button type="reset" id="btnReset" class="btn btn-default">Cancelar</button>
-					<button type="submit" class="btn btn-info pull-right">Guardar</button>
+					{if $PAGE.usuario->getIdTipo() neq 4}
+						<button type="submit" class="btn btn-info pull-right">Guardar</button>
+					{/if}
 					<input type="hidden" id="id" name="id"/>
 					<input type="hidden" id="cliente" name="cliente"/>
 				</div>
+				
 			</div>
 		</form>
 	</div>
@@ -135,3 +149,4 @@
 
 {include file=$PAGE.rutaModulos|cat:"modulos/ordenes/winListaMercancias.tpl"}
 {include file=$PAGE.rutaModulos|cat:"modulos/ordenes/winMercancia.tpl"}
+{include file=$PAGE.rutaModulos|cat:"modulos/ordenes/winFactura.tpl"}

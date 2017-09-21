@@ -6,7 +6,7 @@ switch($objModulo->getId()){
 	case 'listaMercancia':
 		$db = TBase::conectaDB();
 		global $sesion;
-		$sql = "select a.*, b.nombre as origen, c.nombre as destino from mercancia a join pais b on a.idOrigen = b.idPais join pais c on a.idDestino = c.idPais where idOrden = ".$_POST['orden'];
+		$sql = "select a.*, b.nombre as origen from mercancia a join pais b on a.idOrigen = b.idPais where idOrden = ".$_POST['orden'];
 			
 		$rs = $db->query($sql) or errorMySQL($db, $sql);
 		$datos = array();
@@ -34,21 +34,17 @@ switch($objModulo->getId()){
 				
 				$obj->setId($_POST['id']);
 
-					
-				$obj->setFraccion($_POST['fraccion']);
 				$obj->setDescripcion($_POST['descripcion']);
 				$obj->setMarca($_POST['marca']);
 				$obj->setModelo($_POST['modelo']);
 				$obj->setSerie($_POST['serie']);
 				$obj->setCantidad($_POST['cantidad']);
 				$obj->setPesoNeto($_POST['pesoneto']);
-				$obj->setPesoBruto($_POST['pesobruto']);
 				$obj->setEmbalaje($_POST['embalaje']);
 				$obj->setMCTM($_POST['mctm']);
 				$obj->setEC($_POST['ec']);
 				$obj->setObservaciones($_POST['observaciones']);
 				$obj->setOrigen($_POST['origen']);
-				$obj->setDestino($_POST['destino']);
 					
 				$band = $obj->guardar($_POST['orden']);
 				

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.11, created on 2017-08-24 10:07:34
+<?php /* Smarty version Smarty-3.1.11, created on 2017-09-19 15:54:31
          compiled from "templates/plantillas/modulos/estados/lista.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:347222222599eebb6eeeba1-62613347%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '283ab36ed022f8de806ba5eba9c046cd5bc45491' => 
     array (
       0 => 'templates/plantillas/modulos/estados/lista.tpl',
-      1 => 1493040030,
+      1 => 1505854469,
       2 => 'file',
     ),
   ),
@@ -15,14 +15,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.11',
+  'unifunc' => 'content_599eebb6f3b5e4_67350706',
   'variables' => 
   array (
     'lista' => 0,
     'row' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.11',
-  'unifunc' => 'content_599eebb6f3b5e4_67350706',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_599eebb6f3b5e4_67350706')) {function content_599eebb6f3b5e4_67350706($_smarty_tpl) {?><div class="box">
 	<div class="box-body">
@@ -47,12 +47,8 @@ $_smarty_tpl->tpl_vars["row"]->_loop = true;
 						<td><?php echo $_smarty_tpl->tpl_vars['row']->value['nombre'];?>
 </td>
 						<td style="text-align: right">
-							<button type="button" class="btn btn-success" action="modificar" title="Modificar" datos='<?php echo $_smarty_tpl->tpl_vars['row']->value['json'];?>
+							<button type="button" class="btn btn-success btn-xs" action="modificar" title="Modificar" datos='<?php echo $_smarty_tpl->tpl_vars['row']->value['json'];?>
 '><i class="fa fa-pencil"></i></button>
-							<?php if ($_smarty_tpl->tpl_vars['row']->value['eliminar']==1){?>
-								<button type="button" class="btn btn-danger" action="eliminar" title="Eliminar" item="<?php echo $_smarty_tpl->tpl_vars['row']->value['idEstado'];?>
-"><i class="fa fa-times"></i></button>
-							<?php }?>
 						</td>
 					</tr>
 				<?php } ?>

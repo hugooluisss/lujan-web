@@ -62,23 +62,9 @@ $(document).ready(function(){
 				tipo: $("#selTipo").val(),
 				fecha: $("#txtFecha").val(), 
 				factura: $("#txtFactura").val(),
-				lugar: $("#txtLugar").val(),
-				transportista: $("#txtTransportista").val(),
-				chofer: $("#txtChofer").val(),
-				gafete: $("#selGafete").val(),
-				contenedor: $("#txtContenedor").val(),
-				tipoContenedor: $("#txtTipoContenedor").val(),
-				claveContenedor: $("#txtClaveContenedor").val(),
-				placas: $("#txtPlacas").val(),
-				numeroCandado: $("#txtNumeroCandado").val(),
 				fn: {
 					after: function(datos){
 						if (datos.band){
-							if ($("#id").val() == ''){
-								$("#winFactura").attr("orden", datos.id);
-								$("#winFactura").modal();
-							}
-							
 							getLista();
 							$("#frmAdd").get(0).reset();
 							$('#panelTabs a[href="#listas"]').tab('show');
@@ -105,28 +91,16 @@ $(document).ready(function(){
 				$("#cliente").val(el.idCliente);
 				$("#selPrevio").val(el.idPrevio);
 				$("#selCapturista").val(el.idCapturista);
+				$("#selPrevio").val(el.idPrevio);
 				$("#selTipo").val(el.idTipo);
 				$("#txtFecha").val(el.fecha);
 				$("#txtFactura").val(el.factura);
-				$("#txtLugar").val(el.lugar);
-				$("#txtTransportista").val(el.transportista);
-				$("#txtChofer").val(el.chofer);
-				$("#selGafete").val(el.gafete);
-				$("#txtContenedor").val(el.contenedor);
-				$("#txtTipoContenedor").val(el.tipocontenedor);
-				$("#txtClaveContenedor").val(el.clavecontenedor);
-				$("#txtPlacas").val(el.placas);
-				$("#txtNumeroCandado").val(el.numerocandado);
-				
+								
 				$('#panelTabs a[href="#add"]').tab('show');
 			});
 			
 			$("[action=getMercancias]").click(function(){
 				$("#winListaMercancias").attr("datos", $(this).attr("datos"));
-			});
-			
-			$("[action=factura]").click(function(){
-				$("#winFactura").attr("orden", $(this).attr("idOrden"));
 			});
 			
 			$("#tblDatos").DataTable({

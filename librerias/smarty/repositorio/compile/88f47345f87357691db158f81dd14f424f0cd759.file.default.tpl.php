@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.11, created on 2017-08-29 19:09:19
+<?php /* Smarty version Smarty-3.1.11, created on 2017-09-19 16:10:20
          compiled from "templates/plantillas/layout/default.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1443016384599ed9a0aa5588-84117923%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '88f47345f87357691db158f81dd14f424f0cd759' => 
     array (
       0 => 'templates/plantillas/layout/default.tpl',
-      1 => 1503601934,
+      1 => 1505855419,
       2 => 'file',
     ),
   ),
@@ -145,8 +145,8 @@ img/logo.jpg" alt="User Image" style="background: white"/>
 			<!-- sidebar menu: : style can be found in sidebar.less -->
 				<ul class="sidebar-menu">
 					<li class="header">MENÚ PRINCIPAL</li>
-					<?php if ($_smarty_tpl->tpl_vars['PAGE']->value['usuario']->getPerfil()==1){?>
 					<li class="<?php if (in_array($_smarty_tpl->tpl_vars['PAGE']->value['modulo'],array('usuarios','estados'))){?>active<?php }?> treeview">
+						<?php if ($_smarty_tpl->tpl_vars['PAGE']->value['usuario']->getPerfil()==1){?>
 						<a href="#">
 							<i class="fa fa-dashboard"></i>
 							<span>Administración</span> <i class="fa fa-angle-left pull-right"></i>
@@ -155,6 +155,8 @@ img/logo.jpg" alt="User Image" style="background: white"/>
 							<li <?php if ($_smarty_tpl->tpl_vars['PAGE']->value['modulo']=='usuarios'){?>class="active"<?php }?>><a href="usuarios">Usuarios</a></li>
 							<li class="<?php if (in_array($_smarty_tpl->tpl_vars['PAGE']->value['modulo'],array('estados'))){?>active<?php }?>"><a href="estados">Estados</a></li>
 						</ul>
+						<?php }?>
+						<?php if (in_array($_smarty_tpl->tpl_vars['PAGE']->value['usuario']->getPerfil(),array(1,2))){?>
 						<li class="<?php if (in_array($_smarty_tpl->tpl_vars['PAGE']->value['modulo'],array('clientes'))){?>active<?php }?> treeview">
 							<a href="#">
 								<i class="fa fa-list-alt"></i> 
@@ -164,17 +166,25 @@ img/logo.jpg" alt="User Image" style="background: white"/>
 								<li class="<?php if (in_array($_smarty_tpl->tpl_vars['PAGE']->value['modulo'],array('clientes'))){?>active<?php }?>"><a href="clientes">Clientes</a></li>
 							</ul>
 						</li>
-						<li class="<?php if (in_array($_smarty_tpl->tpl_vars['PAGE']->value['modulo'],array('ordenes'))){?>active<?php }?> treeview">
+						<?php }?>
+						<li class="<?php if (in_array($_smarty_tpl->tpl_vars['PAGE']->value['modulo'],array('ordenes','ordeneslogistica','ordenesoficina'))){?>active<?php }?> treeview">
 							<a href="#">
 								<i class="fa fa-truck"></i> 
 								<span>Órdenes</span> <i class="fa fa-angle-left pull-right"></i>
 							</a>
 							<ul class="treeview-menu">
-								<li class="<?php if (in_array($_smarty_tpl->tpl_vars['PAGE']->value['modulo'],array('ordenes'))){?>active<?php }?>"><a href="ordenes">Registro</a></li>
+								<?php if ($_smarty_tpl->tpl_vars['PAGE']->value['usuario']->getIdTipo()==1){?>
+									<li class="<?php if (in_array($_smarty_tpl->tpl_vars['PAGE']->value['modulo'],array('ordenes'))){?>active<?php }?>"><a href="ordenes">Registro</a></li>
+								<?php }?>
+								<?php if ($_smarty_tpl->tpl_vars['PAGE']->value['usuario']->getIdTipo()==2){?>
+									<li class="<?php if (in_array($_smarty_tpl->tpl_vars['PAGE']->value['modulo'],array('ordeneslogistica'))){?>active<?php }?>"><a href="ordeneslogistica">Registro</a></li>
+								<?php }?>
+								<?php if ($_smarty_tpl->tpl_vars['PAGE']->value['usuario']->getIdTipo()==4){?>
+									<li class="<?php if (in_array($_smarty_tpl->tpl_vars['PAGE']->value['modulo'],array('ordenesoficina'))){?>active<?php }?>"><a href="ordenesoficina">Registro</a></li>
+								<?php }?>
 							</ul>
 						</li>
 					</li>
-					<?php }?>
 				</ul>
 			</section>
 			<!-- /.sidebar -->

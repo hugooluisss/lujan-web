@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.11, created on 2017-09-11 22:25:33
+<?php /* Smarty version Smarty-3.1.11, created on 2017-09-20 10:45:44
          compiled from "templates/plantillas/modulos/ordenes/listaMercancia.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:107247105859b745ea848a48-53760800%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '5a326ba93e287e6507daa86d23dc97cc0f389ff0' => 
     array (
       0 => 'templates/plantillas/modulos/ordenes/listaMercancia.tpl',
-      1 => 1505186568,
+      1 => 1505922328,
       2 => 'file',
     ),
   ),
@@ -27,7 +27,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <?php if ($_valid && !is_callable('content_59b745ea912370_45771129')) {function content_59b745ea912370_45771129($_smarty_tpl) {?><table id="tblMercancias" class="table table-bordered table-hover">
 	<thead>
 		<tr>
-			<th>Fracción</th>
 			<th>Descripción</th>
 			<th>Marca</th>
 			<th>Modelo</th>
@@ -43,8 +42,6 @@ foreach ($_from as $_smarty_tpl->tpl_vars["row"]->key => $_smarty_tpl->tpl_vars[
 $_smarty_tpl->tpl_vars["row"]->_loop = true;
 ?>
 			<tr>
-				<td><?php echo $_smarty_tpl->tpl_vars['row']->value['fraccion'];?>
-</td>
 				<td><?php echo $_smarty_tpl->tpl_vars['row']->value['descripcion'];?>
 </td>
 				<td><?php echo $_smarty_tpl->tpl_vars['row']->value['marca'];?>

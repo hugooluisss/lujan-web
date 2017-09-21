@@ -8,20 +8,17 @@
 class TMercancia{
 	private $idMercancia;
 	private $idOrden;
-	private $fraccion;
 	private $descripcion;
 	private $marca;
 	private $modelo;
 	private $serie;
 	private $cantidad;
 	private $pesoneto;
-	private $pesobruto;
 	private $embalaje;
 	private $mctm;
 	private $ec;
 	private $observaciones;
 	private $idOrigen;
-	private $idDestino;
 	
 	/**
 	* Constructor de la clase
@@ -68,32 +65,6 @@ class TMercancia{
 	
 	public function getId(){
 		return $this->idMercancia;
-	}
-	
-	/**
-	* Establece la fracción
-	*
-	* @autor Hugo
-	* @access public
-	* @param string $val Valor a asignar
-	* @return boolean True si se realizó sin problemas
-	*/
-	
-	public function setFraccion($val = ''){
-		$this->fraccion = $val;
-		return true;
-	}
-	
-	/**
-	* Retorna la fracción
-	*
-	* @autor Hugo
-	* @access public
-	* @return string Texto
-	*/
-	
-	public function getFraccion(){
-		return $this->fraccion;
 	}
 	
 	/**
@@ -253,32 +224,6 @@ class TMercancia{
 	}
 	
 	/**
-	* Establece el peso bruto
-	*
-	* @autor Hugo
-	* @access public
-	* @param string $val Valor a asignar
-	* @return boolean True si se realizó sin problemas
-	*/
-	
-	public function setPesoBruto($val = 0){
-		$this->pesobruto = $val;
-		return true;
-	}
-	
-	/**
-	* Retorna el peso bruto
-	*
-	* @autor Hugo
-	* @access public
-	* @return string Texto
-	*/
-	
-	public function getPesoBruto(){
-		return $this->pesobruto == ''?0:$this->pesobruto;
-	}
-	
-	/**
 	* Establece el embalaje
 	*
 	* @autor Hugo
@@ -409,32 +354,6 @@ class TMercancia{
 	}
 	
 	/**
-	* Establece el destino
-	*
-	* @autor Hugo
-	* @access public
-	* @param string $val Valor a asignar, por default es MX
-	* @return boolean True si se realizó sin problemas
-	*/
-	
-	public function setDestino($val = 146){
-		$this->idDestino = $val;
-		return true;
-	}
-	
-	/**
-	* Retorna el destino
-	*
-	* @autor Hugo
-	* @access public
-	* @return string Texto
-	*/
-	
-	public function getDestino(){
-		return $this->idDestino;
-	}
-	
-	/**
 	* Guarda los datos en la base de datos, si no existe un identificador entonces crea el objeto
 	*
 	* @autor Hugo
@@ -445,11 +364,10 @@ class TMercancia{
 	public function guardar($orden = ''){
 		if ($orden == '') return false;
 		if ($this->getOrigen() == '') return false;
-		if ($this->getDestino() == '') return false;
 		$db = TBase::conectaDB();
 		
 		if ($this->getId() == ''){
-			$sql = "INSERT INTO mercancia(idOrden, idOrigen, idDestino) VALUES(".$orden.", ".$this->getOrigen().", ".$this->getDestino().");";
+			$sql = "INSERT INTO mercancia(idOrden, idOrigen) VALUES(".$orden.", ".$this->getOrigen().");";
 			$rs = $db->query($sql) or errorMySQL($db, $sql);;
 			if (!$rs) return false;
 			
@@ -461,21 +379,17 @@ class TMercancia{
 		
 		$sql = "UPDATE mercancia
 			SET
-				fraccion = '".$this->getFraccion()."',
 				descripcion = '".$this->getDescripcion()."',
 				marca = '".$this->getMarca()."',
 				modelo = '".$this->getModelo()."',
 				serie = '".$this->getSerie()."',
 				cantidad = ".$this->getCantidad().",
 				pesoneto = ".$this->getPesoNeto().",
-				pesobruto = ".$this->getPesoBruto().",
 				embalaje = '".$this->getEmbalaje()."',
-				fraccion = '".$this->getFraccion()."',
 				mctm = '".$this->getMCTM()."',
 				ec = '".$this->getEC()."',
 				observaciones = '".$this->getObservaciones()."',
-				idOrigen = ".$this->getOrigen().",
-				idDestino = ".$this->getDestino()."
+				idOrigen = ".$this->getOrigen()."
 			WHERE idMercancia = ".$this->getId();
 			
 		$rs = $db->query($sql) or errorMySQL($db, $sql);

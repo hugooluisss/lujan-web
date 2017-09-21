@@ -1,7 +1,6 @@
 <table id="tblMercancias" class="table table-bordered table-hover">
 	<thead>
 		<tr>
-			<th>Fracción</th>
 			<th>Descripción</th>
 			<th>Marca</th>
 			<th>Modelo</th>
@@ -13,7 +12,6 @@
 	<tbody>
 		{foreach from=$lista item="row"}
 			<tr>
-				<td>{$row.fraccion}</td>
 				<td>{$row.descripcion}</td>
 				<td>{$row.marca}</td>
 				<td>{$row.modelo}</td>

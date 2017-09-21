@@ -96,8 +96,8 @@
 			<!-- sidebar menu: : style can be found in sidebar.less -->
 				<ul class="sidebar-menu">
 					<li class="header">MENÚ PRINCIPAL</li>
-					{if $PAGE.usuario->getPerfil() eq 1}
 					<li class="{if in_array($PAGE.modulo, array('usuarios', 'estados'))}active{/if} treeview">
+						{if $PAGE.usuario->getPerfil() eq 1}
 						<a href="#">
 							<i class="fa fa-dashboard"></i>
 							<span>Administración</span> <i class="fa fa-angle-left pull-right"></i>
@@ -106,6 +106,8 @@
 							<li {if $PAGE.modulo eq 'usuarios'}class="active"{/if}><a href="usuarios">Usuarios</a></li>
 							<li class="{if in_array($PAGE.modulo, array('estados'))}active{/if}"><a href="estados">Estados</a></li>
 						</ul>
+						{/if}
+						{if in_array($PAGE.usuario->getPerfil(), array(1, 2))}
 						<li class="{if in_array($PAGE.modulo, array('clientes'))}active{/if} treeview">
 							<a href="#">
 								<i class="fa fa-list-alt"></i> 
@@ -115,17 +117,25 @@
 								<li class="{if in_array($PAGE.modulo, array('clientes'))}active{/if}"><a href="clientes">Clientes</a></li>
 							</ul>
 						</li>
-						<li class="{if in_array($PAGE.modulo, array('ordenes'))}active{/if} treeview">
+						{/if}
+						<li class="{if in_array($PAGE.modulo, array('ordenes', 'ordeneslogistica', 'ordenesoficina'))}active{/if} treeview">
 							<a href="#">
 								<i class="fa fa-truck"></i> 
 								<span>Órdenes</span> <i class="fa fa-angle-left pull-right"></i>
 							</a>
 							<ul class="treeview-menu">
-								<li class="{if in_array($PAGE.modulo, array('ordenes'))}active{/if}"><a href="ordenes">Registro</a></li>
+								{if $PAGE.usuario->getIdTipo() eq 1}
+									<li class="{if in_array($PAGE.modulo, array('ordenes'))}active{/if}"><a href="ordenes">Registro</a></li>
+								{/if}
+								{if $PAGE.usuario->getIdTipo() eq 2}
+									<li class="{if in_array($PAGE.modulo, array('ordeneslogistica'))}active{/if}"><a href="ordeneslogistica">Registro</a></li>
+								{/if}
+								{if $PAGE.usuario->getIdTipo() eq 4}
+									<li class="{if in_array($PAGE.modulo, array('ordenesoficina'))}active{/if}"><a href="ordenesoficina">Registro</a></li>
+								{/if}
 							</ul>
 						</li>
 					</li>
-					{/if}
 				</ul>
 			</section>
 			<!-- /.sidebar -->

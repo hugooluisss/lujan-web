@@ -23,10 +23,17 @@ switch($objModulo->getId()){
 					$result = array('band' => false, 'mensaje' => 'Contraseña inválida');
 				else{
 					$obj = new TUsuario($row['idUsuario']);
-					if ($obj->getId() == '')
-						$result = array('band' => false, 'mensaje' => 'Acceso denegado', 'tipo' => $obj->getIdTipo());
-					else
-						$result = array('band' => true);
+					if ($_POST['movil'] == 1){
+						if ($obj->getIdTipo() == 3)
+							$result = array('band' => true);
+						else
+							$result = array('band' => false);
+					}else{
+						if ($obj->getId() == '' or $obj->getIdTipo() == 3)
+							$result = array('band' => false, 'mensaje' => 'Acceso denegado', 'tipo' => $obj->getIdTipo());
+						else
+							$result = array('band' => true);
+					}
 				}
 				
 				if($result['band']){

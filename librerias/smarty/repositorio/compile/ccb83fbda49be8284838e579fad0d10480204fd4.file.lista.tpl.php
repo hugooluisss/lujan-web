@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.11, created on 2017-09-11 22:24:19
+<?php /* Smarty version Smarty-3.1.11, created on 2017-09-20 14:45:48
          compiled from "templates/plantillas/modulos/ordenes/lista.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:85214592059a602f5e2c5f6-78988998%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ccb83fbda49be8284838e579fad0d10480204fd4' => 
     array (
       0 => 'templates/plantillas/modulos/ordenes/lista.tpl',
-      1 => 1505186597,
+      1 => 1505936737,
       2 => 'file',
     ),
   ),
@@ -30,10 +30,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			<thead>
 				<tr>
 					<th>Fecha</th>
+					<th>Estado</th>
 					<th>Factura</th>
 					<th>Tipo</th>
 					<th>Cliente</th>
-					<th>Asignada</th>
 					<th>&nbsp;</th>
 				</tr>
 			</thead>
@@ -48,15 +48,18 @@ $_smarty_tpl->tpl_vars["row"]->_loop = true;
 						<td style="border-left: solid 3px <?php echo $_smarty_tpl->tpl_vars['row']->value['color'];?>
 "><?php echo $_smarty_tpl->tpl_vars['row']->value['fecha'];?>
 </td>
+						<td style="color: <?php echo $_smarty_tpl->tpl_vars['row']->value['color'];?>
+"><?php echo $_smarty_tpl->tpl_vars['row']->value['estado'];?>
+</td>
 						<td><?php echo $_smarty_tpl->tpl_vars['row']->value['factura'];?>
 </td>
 						<td><?php echo $_smarty_tpl->tpl_vars['row']->value['tipo'];?>
 </td>
 						<td><?php echo $_smarty_tpl->tpl_vars['row']->value['cliente'];?>
 </td>
-						<td><?php echo $_smarty_tpl->tpl_vars['row']->value['usuario'];?>
-</td>
 						<td style="text-align: right">
+							<button type="button" class="btn btn-success btn-xs" action="factura" title="Subir factura" idOrden="<?php echo $_smarty_tpl->tpl_vars['row']->value['idOrden'];?>
+" data-toggle="modal" data-target="#winFactura"><i class="fa fa-upload"></i></button>
 							<button type="button" class="btn btn-primary btn-xs" action="modificar" title="Modificar" datos='<?php echo $_smarty_tpl->tpl_vars['row']->value['json'];?>
 '><i class="fa fa-edit"></i></button>
 							<button type="button" class="btn btn-primary btn-xs" action="getMercancias" title="Ver mercancías registradas" datos='<?php echo $_smarty_tpl->tpl_vars['row']->value['json'];?>

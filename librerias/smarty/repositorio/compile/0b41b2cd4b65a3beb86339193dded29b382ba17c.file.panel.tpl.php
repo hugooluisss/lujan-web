@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.11, created on 2017-09-11 22:25:29
+<?php /* Smarty version Smarty-3.1.11, created on 2017-09-20 11:09:29
          compiled from "templates/plantillas/modulos/ordenes/panel.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:77778909459a602d1a63231-01434469%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '0b41b2cd4b65a3beb86339193dded29b382ba17c' => 
     array (
       0 => 'templates/plantillas/modulos/ordenes/panel.tpl',
-      1 => 1505186727,
+      1 => 1505923768,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'row' => 0,
     'tipos' => 0,
     'item' => 0,
-    'usuarios' => 0,
+    'previos' => 0,
+    'capturistas' => 0,
     'PAGE' => 0,
   ),
   'has_nocache_code' => false,
@@ -101,15 +102,30 @@ $_smarty_tpl->tpl_vars['item']->_loop = true;
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="selUsuario" class="col-md-2">Usuario encargado</label>
+						<label for="selPrevio" class="col-md-2">Usuario previo (revisor)</label>
 						<div class="col-md-4">
-							<select class="form-control" id="selUsuario" name="selUsuario">
+							<select class="form-control" id="selPrevio" name="selPrevio">
+								<option value="">Sin asignar</option>
 								<?php  $_smarty_tpl->tpl_vars['row'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['row']->_loop = false;
- $_from = $_smarty_tpl->tpl_vars['usuarios']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+ $_from = $_smarty_tpl->tpl_vars['previos']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['row']->key => $_smarty_tpl->tpl_vars['row']->value){
 $_smarty_tpl->tpl_vars['row']->_loop = true;
 ?>
-									<option value="">Sin asignar</option>
+									<option value="<?php echo $_smarty_tpl->tpl_vars['row']->value['idUsuario'];?>
+"><?php echo $_smarty_tpl->tpl_vars['row']->value['nombre'];?>
+</option>
+								<?php } ?>
+							</select>
+						</div>
+						<label for="selCapturista" class="col-md-2">Usuario capturista</label>
+						<div class="col-md-4">
+							<select class="form-control" id="selCapturista" name="selCapturista">
+								<option value="">Sin asignar</option>
+								<?php  $_smarty_tpl->tpl_vars['row'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['row']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['capturistas']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['row']->key => $_smarty_tpl->tpl_vars['row']->value){
+$_smarty_tpl->tpl_vars['row']->_loop = true;
+?>
 									<option value="<?php echo $_smarty_tpl->tpl_vars['row']->value['idUsuario'];?>
 "><?php echo $_smarty_tpl->tpl_vars['row']->value['nombre'];?>
 </option>
@@ -117,6 +133,7 @@ $_smarty_tpl->tpl_vars['row']->_loop = true;
 							</select>
 						</div>
 					</div>
+					<?php if (in_array($_smarty_tpl->tpl_vars['PAGE']->value['usuario']->getIdTipo(),array(4,1))){?>
 					<br />
 					<div class="form-group">
 						<label for="txtLugar" class="col-md-2">Lugar</label>
@@ -171,13 +188,17 @@ $_smarty_tpl->tpl_vars['row']->_loop = true;
 							<input class="form-control" id="txtNumeroCandado" name="txtNumeroCandado">
 						</div>
 					</div>
+					<?php }?>
 				</div>
 				<div class="box-footer">
 					<button type="reset" id="btnReset" class="btn btn-default">Cancelar</button>
-					<button type="submit" class="btn btn-info pull-right">Guardar</button>
+					<?php if ($_smarty_tpl->tpl_vars['PAGE']->value['usuario']->getIdTipo()!=4){?>
+						<button type="submit" class="btn btn-info pull-right">Guardar</button>
+					<?php }?>
 					<input type="hidden" id="id" name="id"/>
 					<input type="hidden" id="cliente" name="cliente"/>
 				</div>
+				
 			</div>
 		</form>
 	</div>
@@ -186,4 +207,6 @@ $_smarty_tpl->tpl_vars['row']->_loop = true;
 <?php echo $_smarty_tpl->getSubTemplate (($_smarty_tpl->tpl_vars['PAGE']->value['rutaModulos']).("modulos/ordenes/winListaMercancias.tpl"), $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 
 <?php echo $_smarty_tpl->getSubTemplate (($_smarty_tpl->tpl_vars['PAGE']->value['rutaModulos']).("modulos/ordenes/winMercancia.tpl"), $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+
+<?php echo $_smarty_tpl->getSubTemplate (($_smarty_tpl->tpl_vars['PAGE']->value['rutaModulos']).("modulos/ordenes/winFactura.tpl"), $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
 <?php }} ?>

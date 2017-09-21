@@ -10,7 +10,8 @@ class TOrden{
 	public $estado;
 	public $cliente;
 	private $idTipo;
-	public $usuario;
+	public $previo;
+	public $capturista;
 	private $fecha;
 	private $factura;
 	private $lugar;
@@ -35,7 +36,8 @@ class TOrden{
 		$this->estado = new TEstado;
 		$this->cliente = new TCliente;
 		$this->idTipo = 1;
-		$this->usuario = new TUsuario;
+		$this->previo = new TUsuario;
+		$this->capturista = new TUsuario;
 		
 		$this->setId($id);
 		
@@ -66,8 +68,11 @@ class TOrden{
 				case 'idCliente':
 					$this->cliente = new TCliente($val);
 				break;
-				case "idUsuario":
-					$this->usuario = new TUsuario($val);
+				case "idPrevio":
+					$this->previo = new TUsuario($val);
+				break;
+				case "idCapturista":
+					$this->capturista = new TUsuario($val);
 				break;
 				default:
 					$this->$field = $val;
@@ -445,7 +450,8 @@ class TOrden{
 				idEstado = ".$this->estado->getId().",
 				idCliente = ".$this->cliente->getId().",
 				idTipo = ".$this->getTipo().",
-				idUsuario = ".($this->usuario->getId() == ''?"null":$this->usuario->getId()).",
+				idPrevio = ".($this->previo->getId() == ''?"null":$this->previo->getId()).",
+				idCapturista = ".($this->capturista->getId() == ''?"null":$this->capturista->getId()).",
 				fecha = '".$this->getFecha()."',
 				factura = '".$this->getFactura()."',
 				lugar = '".$this->getLugar()."',

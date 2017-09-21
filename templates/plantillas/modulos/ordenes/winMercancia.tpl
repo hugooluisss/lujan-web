@@ -13,11 +13,6 @@
 				</div>
 				<hr />
 				<div class="form-group row">
-					<label for="txtFraccion" class="control-label col-xs-4 col-sm-2">Fracción</label>
-					<div class="col-xs-8 col-sm-10" campo="fraccion">
-					</div>
-				</div>
-				<div class="form-group row">
 					<label for="txtDescripcion" class="control-label col-xs-4 col-sm-2">Descripción</label>
 					<div class="col-xs-8 col-sm-10" campo="descripcion">
 					</div>
@@ -25,9 +20,6 @@
 				<div class="form-group row">
 					<label for="txtMarca" class="control-label col-xs-4 col-sm-2">Origen</label>
 					<div class="col-xs-8 col-sm-4" campo="origen">
-					</div>
-					<label for="txtModelo" class="control-label col-xs-4 col-sm-2">Destino</label>
-					<div class="col-xs-8 col-sm-4" campo="destino">
 					</div>
 				</div>
 				<div class="form-group row">
@@ -48,26 +40,24 @@
 					<label for="txtPesoNeto" class="control-label col-xs-4 col-sm-2">Peso neto</label>
 					<div class="col-xs-8 col-sm-2" campo="pesoneto">
 					</div>
-					<label for="txtPesoBruto" class="control-label col-xs-4 col-sm-2">Peso bruto</label>
-					<div class="col-xs-8 col-sm-2" campo="pesobruto">
-					</div>
 				</div>
 				<div class="form-group row">
 					<label for="txtEmbalaje" class="control-label col-xs-4 col-sm-2">Embalaje</label>
 					<div class="col-xs-8 col-sm-4" campo="embalaje">
 					</div>
-					<label for="txtMCTM" class="control-label col-xs-4 col-sm-2">M. C. T. M.</label>
-					<div class="col-xs-4 col-sm-4" campo="mctm">
-					</div>
 				</div>
 				<div class="form-group row">
-					<label for="txtEC" class="control-label col-xs-4 col-sm-2">E. C.</label>
-					<div class="col-xs-4 col-sm-2" campo="ec">
+					<label for="txtMCTM" class="control-label col-xs-4 col-sm-2">Marcado Correcto (T. M.)</label>
+					<div class="col-xs-4 col-sm-4" campo="mctm">
+					</div>
+					<label for="txtEC" class="control-label col-xs-4 col-sm-2">Etiquetado Correcto</label>
+					<div class="col-xs-4 col-sm-4" campo="ec">
 					</div>
 				</div>
 				<div class="form-group row">
 					<label for="txtObservaciones" class="control-label col-xs-4 col-sm-2">Observaciones</label>
-					<div class="col-xs-8 col-sm-10" campo="observaciones">
+					
+					<div class="col-xs-12 col-sm-12" campo="observaciones">
 					</div>
 				</div>
 			</div>
